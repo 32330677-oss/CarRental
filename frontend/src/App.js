@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import About from './components/About';
@@ -10,6 +10,7 @@ import Cars from './components/Cars';
 import Login from './components/Login';
 import CarDetails from './components/CarDetails';
 import AdminDashboard from './components/AdminDashboard';
+
 function App() {
   return (
     <Router>
@@ -24,7 +25,6 @@ function App() {
             <Route path="/login" element={<Login />}/>
             <Route path="/CarDetails/:id" element={<CarDetails />}/>
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
-
           </Routes>
         </main>
         <Footer />

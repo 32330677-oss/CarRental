@@ -2,6 +2,7 @@
   "name": "firstapp",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://car-rental-frontend-9g0h.onrender.com",
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
