@@ -22,14 +22,14 @@ function Contact() {
     setLoading(true);
     setSuccessMessage('');
 
-    try {
-      const response = await fetch('http://car-rental-backend-2dji.onrender.com/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
-      });
+   try {
+  const response = await fetch('https://car-rental-backend-2dji.onrender.com/api/contact', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(formData)
+  });
 
       const data = await response.json();
       

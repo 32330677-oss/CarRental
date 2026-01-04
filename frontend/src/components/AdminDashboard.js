@@ -63,7 +63,7 @@ function AdminDashboard() {
 
   const fetchContactMessages = async () => {
     try {
-      const response = await fetch('http://car-rental-backend-2dji.onrender.com/api/contact/messages');
+      const response = await fetch('https://car-rental-backend-2dji.onrender.com/api/contact/messages');
       const data = await response.json();
       
       if (data.success) {
@@ -78,7 +78,7 @@ function AdminDashboard() {
   const fetchBookings = async () => {
     setLoadingData(prev => ({ ...prev, bookings: true }));
     try {
-      const response = await fetch('http://car-rental-backend-2dji.onrender.com/api/bookings');
+      const response = await fetch('https://car-rental-backend-2dji.onrender.com/api/bookings');
       const data = await response.json();
       
       if (data.success) {
@@ -94,7 +94,7 @@ function AdminDashboard() {
   const fetchCars = async () => {
     setLoadingData(prev => ({ ...prev, cars: true }));
     try {
-      const response = await fetch('http://car-rental-backend-2dji.onrender.com/api/cars');
+      const response = await fetch('https://car-rental-backend-2dji.onrender.com/api/cars');
       const data = await response.json();
       
       if (data.success) {
@@ -148,7 +148,7 @@ function AdminDashboard() {
   const handleUpdateBookingStatus = async (bookingId, newStatus) => {
     try {
       // Note: You need to add this endpoint to your backend
-      const response = await fetch(`http://car-rental-backend-2dji.onrender.com/api/bookings/${bookingId}/status`, {
+      const response = await fetch(`https://car-rental-backend-2dji.onrender.com/api/bookings/${bookingId}/status`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus })
@@ -170,7 +170,7 @@ function AdminDashboard() {
     
     try {
       // Note: You need to add this endpoint to your backend
-      const response = await fetch(`http://car-rental-backend-2dji.onrender.com/api/cars/${carId}`, {
+      const response = await fetch(`https://car-rental-backend-2dji.onrender.com/api/cars/${carId}`, {
         method: 'DELETE'
       });
       

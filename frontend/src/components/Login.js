@@ -30,7 +30,7 @@ function Login() {
       console.log('🔵 [FRONTEND] Sending login request...');
       console.log('📤 Data being sent:', formData);
       
-      const response = await fetch('http://car-rental-backend-2dji.onrender.com/api/admin/login', {
+      const response = await fetch('https://car-rental-backend-2dji.onrender.com/api/admin/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
