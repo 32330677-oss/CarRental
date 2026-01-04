@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Cars.css';
 
-// Import your images
+
 import honda from '../assets/Honda.png';
 import bmw from '../assets/BMW.png';
 import civic from '../assets/Civic.png';
@@ -15,7 +15,7 @@ function Cars() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch cars from database on component mount
+  
   useEffect(() => {
     fetchCars();
     fetchCarTypes();
@@ -42,7 +42,7 @@ function Cars() {
     } catch (err) {
       console.error('❌ Error fetching cars:', err);
       setError('Cannot connect to server. Please make sure backend is running on http://car-rental-backend-2dji.onrender.com');
-      // Keep showing hardcoded cars as fallback
+     
     } finally {
       setLoading(false);
     }
@@ -58,36 +58,36 @@ function Cars() {
       }
     } catch (err) {
       console.error('Error fetching car types:', err);
-      // Use default types if API fails
+     
     }
   };
 
-  // Function to get image based on car data
+
   const getCarImage = (car) => {
     const carName = car.name.toLowerCase();
     const carImage = car.image_url ? car.image_url.toLowerCase() : '';
     
-    // Check image name first
+   
     if (carImage.includes('honda')) return honda;
     if (carImage.includes('bmw')) return bmw;
     if (carImage.includes('toyota') || carImage.includes('camry') || carImage.includes('rav4')) return civic;
     if (carImage.includes('mercedes')) return Mercedes;
-    if (carImage.includes('ford')) return civic; // Use civic as placeholder for Ford
-    if (carImage.includes('hyundai')) return civic; // Use civic as placeholder for Hyundai
+    if (carImage.includes('ford')) return civic; 
+    if (carImage.includes('hyundai')) return civic; 
     
-    // Fallback to car name
+  
     if (carName.includes('honda')) return honda;
     if (carName.includes('bmw')) return bmw;
     if (carName.includes('toyota')) return civic;
     if (carName.includes('mercedes')) return Mercedes;
     
-    return civic; // Ultimate fallback
+    return civic;
   };
 
-  // Format features from database string to array
+  
   const getFeaturesArray = (features) => {
-    if (!features) return ['Automatic', 'AC', '4 Seats']; // Default
-    return features.split(',').slice(0, 4); // Show max 4 features
+    if (!features) return ['Automatic', 'AC', '4 Seats'];
+    return features.split(',').slice(0, 4); 
   };
 
   const filteredCars = cars.filter(car => {
@@ -113,7 +113,7 @@ function Cars() {
           <button onClick={fetchCars} className="retry-btn">Retry Connection</button>
         </div>
         
-        {/* Show hardcoded cars as fallback */}
+       
         <div className="cars-controls">
           <div className="types-filter">
             <h3>Car Types</h3>
@@ -131,7 +131,7 @@ function Cars() {
           </div>
         </div>
         
-        {/* Hardcoded fallback cars */}
+        
         <div className="cars-grid">
           {[
             {

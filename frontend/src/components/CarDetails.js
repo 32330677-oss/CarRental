@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './CarDetails.css';
 
-// Import images
+
 import honda from '../assets/Honda.png';
 import bmw from '../assets/BMW.png';
 import civic from '../assets/Civic.png';
@@ -28,7 +28,7 @@ function CarDetails() {
     specialRequests: ''
   });
 
-  // Function to get image
+ 
   const getCarImage = (car) => {
     if (!car) return civic;
     
@@ -45,7 +45,7 @@ function CarDetails() {
     return civic;
   };
 
-  // Fetch car details from API
+  
   useEffect(() => {
     const fetchCarDetails = async () => {
       try {
@@ -98,14 +98,14 @@ function CarDetails() {
       const data = await response.json();
       
       if (data.success) {
-        console.log('✅ Booking saved successfully:', data);
+        console.log('Booking saved successfully:', data);
         return { success: true, data };
       } else {
-        console.error('❌ Booking failed:', data.error);
+        console.error(' Booking failed:', data.error);
         return { success: false, error: data.error };
       }
     } catch (err) {
-      console.error('❌ Error saving booking:', err);
+      console.error('Error ', err);
       return { success: false, error: 'Network error. Please try again.' };
     }
   };
@@ -124,11 +124,9 @@ function CarDetails() {
       return;
     }
     
-    // Calculate days and total price
     const days = Math.ceil((returnDate - pickupDate) / (1000 * 60 * 60 * 24));
     const totalPrice = days * car.price_per_day;
     
-    // Prepare booking data
     const bookingData = {
       car_id: car.id,
       user_name: formData.name,
@@ -145,7 +143,7 @@ function CarDetails() {
     setBookingLoading(true);
     setBookingError(null);
     
-    // Save to database
+   
     const result = await saveBookingToDatabase(bookingData);
     
     setBookingLoading(false);
@@ -153,10 +151,10 @@ function CarDetails() {
     if (result.success) {
       setBookingSuccess(true);
       
-      // Show success message
+     
       alert(`✅ Booking confirmed!\n\nBooking ID: ${result.data.bookingId}\nCar: ${car.name}\nTotal: $${totalPrice} for ${days} days\n\nWe have sent a confirmation to ${formData.email}`);
       
-      // Clear form
+      
       setFormData({
         name: '',
         email: '',
@@ -167,7 +165,7 @@ function CarDetails() {
         specialRequests: ''
       });
       
-      // Navigate to home after 3 seconds
+     
       setTimeout(() => {
         navigate('/');
       }, 3000);
@@ -198,7 +196,7 @@ function CarDetails() {
     );
   }
 
-  // Calculate days if dates are selected
+  
   const days = formData.pickupDate && formData.returnDate 
     ? Math.ceil((new Date(formData.returnDate) - new Date(formData.pickupDate)) / (1000 * 60 * 60 * 24))
     : 0;
@@ -339,7 +337,7 @@ function CarDetails() {
           />
         </div>
 
-        {/* Price Summary */}
+        
         {days > 0 && (
           <div className="price-summary">
             <h3>Price Summary</h3>

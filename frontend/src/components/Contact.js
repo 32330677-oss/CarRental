@@ -37,10 +37,10 @@ function Contact() {
         setSuccessMessage(data.message);
         setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
       } else {
-        setSuccessMessage(data.error || 'Error sending message. Please try again.');
+        setSuccessMessage(data.error || 'Error n.');
       }
     } catch (error) {
-      setSuccessMessage('Error sending message. Please try again.');
+      setSuccessMessage('Erroain.');
     } finally {
       setLoading(false);
     }
@@ -114,8 +114,8 @@ function Contact() {
                 required
               >
                 <option value="">Select a subject</option>
-                <option value="appointment">Appointment Booking</option>
-                <option value="consultation">General Consultation</option>
+                <option value="appointment">Car Booking</option>
+                
                 <option value="emergency">Emergency</option>
                 <option value="prescription">Prescription Renewal</option>
                 <option value="other">Other</option>

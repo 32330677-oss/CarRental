@@ -32,7 +32,6 @@ function AdminDashboard() {
   
   const navigate = useNavigate();
 
-  // Check if user is logged in when component loads
   useEffect(() => {
     const email = localStorage.getItem('adminEmail');
     
@@ -157,7 +156,7 @@ function AdminDashboard() {
       const data = await response.json();
       if (data.success) {
         alert(`Booking ${bookingId} status updated to ${newStatus}`);
-        fetchBookings(); // Refresh bookings
+        fetchBookings(); 
       }
     } catch (error) {
       console.error('Error updating booking status:', error);
@@ -169,7 +168,7 @@ function AdminDashboard() {
     if (!window.confirm('Are you sure you want to delete this car?')) return;
     
     try {
-      // Note: You need to add this endpoint to your backend
+      
       const response = await fetch(`https://car-rental-backend-2dji.onrender.com/api/cars/${carId}`, {
         method: 'DELETE'
       });
@@ -177,7 +176,7 @@ function AdminDashboard() {
       const data = await response.json();
       if (data.success) {
         alert('Car deleted successfully');
-        fetchCars(); // Refresh cars list
+        fetchCars(); 
       }
     } catch (error) {
       console.error('Error deleting car:', error);
@@ -465,7 +464,7 @@ function AdminDashboard() {
           </div>
         )}
 
-        {/* CARS TAB */}
+       
         {activeTab === 'cars' && (
           <div className="tab-content">
             <div className="section-header">
@@ -532,7 +531,7 @@ function AdminDashboard() {
           </div>
         )}
 
-        {/* MESSAGES TAB */}
+        
         {activeTab === 'messages' && (
           <div className="tab-content">
             <div className="section-header">

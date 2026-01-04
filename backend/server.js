@@ -1,13 +1,12 @@
 const express = require("express");
-const { Pool } = require("pg");  // <-- CRITICAL: Import Pool
+const { Pool } = require("pg");  
 const cors = require("cors");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// ===== DATABASE CONNECTION & AUTO-INIT =====
-// PostgreSQL connection to Railway
+
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
@@ -16,13 +15,13 @@ const pool = new Pool({
   }
 });
 
-// Auto-create tables and insert sample data
+
 const initDatabase = async () => {
   console.log("🔧 Initializing Railway database tables...");
   
   const client = await pool.connect();
   try {
-    // Create tables
+  
     await client.query(`
       CREATE TABLE IF NOT EXISTS admin_users (
         id SERIAL PRIMARY KEY,
@@ -75,14 +74,14 @@ const initDatabase = async () => {
       );
     `);
     
-    // Insert admin user
+    
     await client.query(`
       INSERT INTO admin_users (email, password) 
       VALUES ('admin@autorental.com', 'admin123')
       ON CONFLICT (email) DO NOTHING
     `);
     
-    // Insert sample cars if empty
+ 
     const carCount = await client.query('SELECT COUNT(*) FROM cars');
     if (parseInt(carCount.rows[0].count) === 0) {
       await client.query(`
@@ -106,10 +105,10 @@ const initDatabase = async () => {
   }
 };
 
-// Initialize database after 3 seconds
+
 setTimeout(initDatabase, 3000);
 
-// ===== DEBUG ENDPOINT =====
+
 app.get("/api/debug/db", async (req, res) => {
   try {
     const test1 = await pool.query('SELECT 1 as test_number');
@@ -133,7 +132,6 @@ app.get("/api/debug/db", async (req, res) => {
   }
 });
 
-// ===== CONTACT API =====
 app.post("/api/contact", async (req, res) => {
   const { name, email, phone, subject, message } = req.body;
 
@@ -180,7 +178,7 @@ app.get("/api/contact/messages", async (req, res) => {
   }
 });
 
-// ===== ADMIN LOGIN =====
+
 app.post("/api/admin/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -218,7 +216,7 @@ app.post("/api/admin/login", async (req, res) => {
   }
 });
 
-// ===== CAR API =====
+
 app.get("/api/cars", async (req, res) => {
   console.log("🚗 Fetching all cars");
   
@@ -290,7 +288,7 @@ app.get("/api/cars/:id", async (req, res) => {
   }
 });
 
-// ===== BOOKING API =====
+
 app.post("/api/bookings", async (req, res) => {
   const {
     car_id,
@@ -313,7 +311,7 @@ app.post("/api/bookings", async (req, res) => {
   }
 
   try {
-    // Check car exists
+  
     const carResult = await pool.query(
       "SELECT id, name FROM cars WHERE id = $1 AND available = TRUE",
       [car_id]
@@ -326,7 +324,7 @@ app.post("/api/bookings", async (req, res) => {
       });
     }
 
-    // Create booking
+  
     const bookingResult = await pool.query(
       `INSERT INTO bookings 
        (car_id, user_name, user_email, user_phone, driver_license, pickup_date, return_date, total_days, total_price, special_requests, status)
@@ -343,7 +341,7 @@ app.post("/api/bookings", async (req, res) => {
       totalPrice: total_price
     });
   } catch (err) {
-    console.error("❌ Booking error:", err);
+    console.error(" Booking error:", err);
     res.status(500).json({
       success: false,
       error: "Failed to save booking to database"
@@ -406,7 +404,7 @@ app.get("/api/bookings/email/:email", async (req, res) => {
   }
 });
 
-// ===== ROOT =====
+
 app.get("/", (req, res) => {
   res.json({
     message: "AutoRental API Server (PostgreSQL)",
@@ -427,7 +425,7 @@ app.get("/", (req, res) => {
 
 const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
-  console.log(`🌐 URL: http://localhost:${PORT}`);
-  console.log(`📊 Database: Railway PostgreSQL`);
+  console.log(` Server running on port ${PORT}`);
+  console.log(` URL: http://localhost:${PORT}`);
+  console.log(` Database: Railway PostgreSQL`);
 });

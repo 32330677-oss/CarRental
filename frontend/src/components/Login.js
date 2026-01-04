@@ -27,8 +27,8 @@ function Login() {
     setErrorMessage('');
 
     try {
-      console.log('🔵 [FRONTEND] Sending login request...');
-      console.log('📤 Data being sent:', formData);
+      console.log(' [FRONTEND] Sending login request...');
+      console.log(' Data being sent:', formData);
       
       const response = await fetch('https://car-rental-backend-2dji.onrender.com/api/admin/login', {
         method: 'POST',
@@ -38,20 +38,19 @@ function Login() {
         body: JSON.stringify(formData)
       });
 
-      console.log('🟡 [FRONTEND] Response status:', response.status);
+      console.log(' [FRONTEND] Response status:', response.status);
       
       const data = await response.json();
-      console.log('🟢 [FRONTEND] Response data:', data);
+      console.log(' [FRONTEND] Response data:', data);
       
       if (data.success) {
-        console.log('✅ [FRONTEND] Login successful!');
+        console.log(' [FRONTEND] Login successful!');
         localStorage.setItem('adminEmail', formData.email);
         localStorage.setItem('adminId', data.userId);
         
-        // Redirect to admin dashboard
         navigate('/admin/dashboard');
       } else {
-        console.log('❌ [FRONTEND] Login failed:', data.message);
+        console.log(' [FRONTEND] ', data.message);
         setErrorMessage(data.message || 'Login failed');
       }
     } catch (error) {
