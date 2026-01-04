@@ -22,6 +22,59 @@ pool.connect((err, client, release) => {
   }
 });
 
+// ===== DEBUG ENDPOINT =====
+app.get("/api/debug/db", async (req, res) => {
+  console.log("🔍 Testing database connection...");
+  
+  try {
+    // Test 1: Simple query
+    const test1 = await pool.query('SELECT 1 as test_number');
+    
+    // Test 2: Check if tables exist
+    const test2 = await pool.query(`
+      SELECT table_name 
+      FROM information_schema.tables 
+      WHERE table_schema = 'public'
+      ORDER BY table_name
+    `);
+    
+    // Test 3: Count rows in cars table
+    const test3 = await pool.query('SELECT COUNT(*) as car_count FROM cars');
+    
+    res.json({
+      success: true,
+      tests: {
+        simple_query: test1.rows[0],
+        tables: test2.rows.map(row => row.table_name),
+        car_count: test3.rows[0].car_count
+      },
+      connection: {
+        host: pool.options.host || 'from_connection_string',
+        database: pool.options.database || 'postgres'
+      }
+    });
+    
+  } catch (err) {
+    console.error("❌ DEBUG - Full database error:", {
+      message: err.message,
+      code: err.code,
+      detail: err.detail,
+      hint: err.hint
+    });
+    
+    res.json({
+      success: false,
+      error: {
+        message: err.message,
+        code: err.code,
+        detail: err.detail
+      },
+      connection_string: process.env.DATABASE_URL ? 'SET' : 'NOT SET',
+      timestamp: new Date().toISOString()
+    });
+  }
+});
+
 // ===== CONTACT API =====
 app.post("/api/contact", async (req, res) => {
   const { name, email, phone, subject, message } = req.body;
@@ -308,7 +361,8 @@ app.get("/", (req, res) => {
       contact: "POST /api/contact",
       login: "POST /api/admin/login",
       messages: "GET /api/contact/messages",
-      bookings: "POST /api/bookings"
+      bookings: "POST /api/bookings",
+      debug: "GET /api/debug/db"
     }
   });
 });
