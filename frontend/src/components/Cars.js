@@ -24,7 +24,7 @@ function Cars() {
   const fetchCars = async () => {
     try {
       console.log('🔵 Fetching cars from API...');
-      const response = await fetch('http://localhost:5000/api/cars');
+      const response = await fetch('http://car-rental-backend-2dji.onrender.com/api/cars');
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -41,7 +41,7 @@ function Cars() {
       }
     } catch (err) {
       console.error('❌ Error fetching cars:', err);
-      setError('Cannot connect to server. Please make sure backend is running on http://localhost:5000');
+      setError('Cannot connect to server. Please make sure backend is running on http://car-rental-backend-2dji.onrender.com');
       // Keep showing hardcoded cars as fallback
     } finally {
       setLoading(false);
@@ -50,7 +50,7 @@ function Cars() {
 
   const fetchCarTypes = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/cars/types');
+      const response = await fetch('http://car-rental-backend-2dji.onrender.com/api/cars/types');
       const data = await response.json();
       
       if (data.success) {

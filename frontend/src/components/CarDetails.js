@@ -50,7 +50,7 @@ function CarDetails() {
     const fetchCarDetails = async () => {
       try {
         console.log(`🔵 Fetching car details for ID: ${id}`);
-        const response = await fetch(`http://localhost:5000/api/cars/${id}`);
+        const response = await fetch(`http://car-rental-backend-2dji.onrender.com/api/cars/${id}`);
         
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -87,7 +87,7 @@ function CarDetails() {
     try {
       console.log('📤 Sending booking to server:', bookingData);
       
-      const response = await fetch('http://localhost:5000/api/bookings', {
+      const response = await fetch('http://car-rental-backend-2dji.onrender.com/api/bookings', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

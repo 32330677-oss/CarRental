@@ -23,7 +23,7 @@ function Contact() {
     setSuccessMessage('');
 
     try {
-      const response = await fetch('http://localhost:5000/api/contact', {
+      const response = await fetch('http://car-rental-backend-2dji.onrender.com/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
