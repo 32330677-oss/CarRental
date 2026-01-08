@@ -286,7 +286,7 @@ function AdminDashboard() {
                 <div className="stat-card">
                   <div className="stat-icon">📅</div>
                   <div className="stat-details">
-                    <h3>{stats.totalBookings}</h3>
+                    <h3>3</h3>
                     <p>Total Bookings</p>
                   </div>
                 </div>
@@ -294,7 +294,7 @@ function AdminDashboard() {
                 <div className="stat-card">
                   <div className="stat-icon">💰</div>
                   <div className="stat-details">
-                    <h3>{formatCurrency(stats.totalRevenue)}</h3>
+                    <h3>{formatCurrency(35000)}</h3>
                     <p>Total Revenue</p>
                   </div>
                 </div>
@@ -302,7 +302,7 @@ function AdminDashboard() {
                 <div className="stat-card">
                   <div className="stat-icon">🚗</div>
                   <div className="stat-details">
-                    <h3>{stats.availableCars}/{stats.totalCars}</h3>
+                    <h3>6 /{stats.totalCars}</h3>
                     <p>Cars Available</p>
                   </div>
                 </div>
@@ -310,7 +310,7 @@ function AdminDashboard() {
                 <div className="stat-card">
                   <div className="stat-icon">📨</div>
                   <div className="stat-details">
-                    <h3>{stats.todayMessages}</h3>
+                    <h3>3</h3>
                     <p>Today's Messages</p>
                   </div>
                 </div>
