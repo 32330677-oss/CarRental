@@ -23,7 +23,7 @@ function Cars() {
 
   const fetchCars = async () => {
     try {
-      console.log('🔵 Fetching cars from API...');
+      console.log(' Fetching cars from API...');
       const response = await fetch('https://car-rental-backend-2dji.onrender.com/api/cars');
       
       if (!response.ok) {
@@ -31,16 +31,16 @@ function Cars() {
       }
       
       const data = await response.json();
-      console.log('🟢 API response:', data);
+      console.log(' API response:', data);
       
       if (data.success) {
-        console.log(`✅ Loaded ${data.cars.length} cars from database`);
+        console.log(` Loaded ${data.cars.length} cars from database`);
         setCars(data.cars);
       } else {
         setError(data.error || 'Failed to load cars');
       }
     } catch (err) {
-      console.error('❌ Error fetching cars:', err);
+      console.error(' Error fetching cars:', err);
       setError('Cannot connect to server. Please make sure backend is running on http://car-rental-backend-2dji.onrender.com');
      
     } finally {

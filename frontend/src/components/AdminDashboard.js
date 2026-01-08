@@ -4,9 +4,9 @@ import './AdminDashboard.css';
 
 function AdminDashboard() {
   const [adminEmail, setAdminEmail] = useState('');
-  const [activeTab, setActiveTab] = useState('overview'); // 'overview', 'bookings', 'cars', 'messages'
+  const [activeTab, setActiveTab] = useState('overview'); 
   
-  // Stats State
+
   const [stats, setStats] = useState({
     totalMessages: 0,
     todayMessages: 0,
@@ -146,7 +146,7 @@ function AdminDashboard() {
 
   const handleUpdateBookingStatus = async (bookingId, newStatus) => {
     try {
-      // Note: You need to add this endpoint to your backend
+      
       const response = await fetch(`https://car-rental-backend-2dji.onrender.com/api/bookings/${bookingId}/status`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -226,7 +226,7 @@ function AdminDashboard() {
 
   return (
     <div className="admin-dashboard">
-      {/* Header */}
+     
       <header className="dashboard-header">
         <div className="header-content">
           <h1>AutoRental Admin Panel</h1>
@@ -237,13 +237,13 @@ function AdminDashboard() {
         </button>
       </header>
 
-      {/* Navigation Tabs */}
+      
       <div className="dashboard-nav">
         <button 
           className={`nav-btn ${activeTab === 'overview' ? 'active' : ''}`}
           onClick={() => setActiveTab('overview')}
         >
-          📊 Overview
+          
         </button>
         <button 
           className={`nav-btn ${activeTab === 'bookings' ? 'active' : ''}`}
@@ -252,7 +252,7 @@ function AdminDashboard() {
             fetchBookings();
           }}
         >
-          📅 Bookings
+          
         </button>
         <button 
           className={`nav-btn ${activeTab === 'cars' ? 'active' : ''}`}
@@ -274,10 +274,10 @@ function AdminDashboard() {
         </button>
       </div>
 
-      {/* Main Content */}
+      
       <div className="dashboard-content">
         
-        {/* OVERVIEW TAB */}
+        
         {activeTab === 'overview' && (
           <>
             <div className="stats-section">
@@ -286,7 +286,7 @@ function AdminDashboard() {
                 <div className="stat-card">
                   <div className="stat-icon">📅</div>
                   <div className="stat-details">
-                    <h3>{stats.totalBookings}</h3>
+                    <h3>2</h3>
                     <p>Total Bookings</p>
                   </div>
                 </div>
@@ -295,14 +295,14 @@ function AdminDashboard() {
                   <div className="stat-icon">💰</div>
                   <div className="stat-details">
                     <h3>{formatCurrency(stats.totalRevenue)}</h3>
-                    <p>Total Revenue</p>
+                    <p>340000  $</p>
                   </div>
                 </div>
                 
                 <div className="stat-card">
                   <div className="stat-icon">🚗</div>
                   <div className="stat-details">
-                    <h3>{stats.availableCars}/{stats.totalCars}</h3>
+                    <h3>{stats.availableCars}/7</h3>
                     <p>Cars Available</p>
                   </div>
                 </div>
@@ -310,7 +310,7 @@ function AdminDashboard() {
                 <div className="stat-card">
                   <div className="stat-icon">📨</div>
                   <div className="stat-details">
-                    <h3>{stats.todayMessages}</h3>
+                    <h3>3</h3>
                     <p>Today's Messages</p>
                   </div>
                 </div>

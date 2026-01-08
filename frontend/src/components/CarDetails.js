@@ -57,16 +57,16 @@ function CarDetails() {
         }
         
         const data = await response.json();
-        console.log('🟢 Car details response:', data);
+        console.log(' Car details response:', data);
         
         if (data.success) {
-          console.log(`✅ Loaded car: ${data.car.name}`);
+          console.log(` Loaded car: ${data.car.name}`);
           setCar(data.car);
         } else {
           setBookingError(data.error || 'Car not found');
         }
       } catch (err) {
-        console.error('❌ Error fetching car details:', err);
+        console.error(' Error fetching car details:', err);
         setBookingError('Cannot connect to server. Please try again.');
       } finally {
         setLoading(false);
@@ -85,7 +85,7 @@ function CarDetails() {
 
   const saveBookingToDatabase = async (bookingData) => {
     try {
-      console.log('📤 Sending booking to server:', bookingData);
+      console.log(' Sending booking to server:', bookingData);
       
       const response = await fetch('https://car-rental-backend-2dji.onrender.com/api/bookings', {
         method: 'POST',
@@ -206,7 +206,7 @@ function CarDetails() {
     <div className="car-details">
       {bookingSuccess && (
         <div className="booking-success">
-          <h2>✅ Booking Successful!</h2>
+          <h2> Booking Successful!</h2>
           <p>Your booking has been confirmed. Redirecting to homepage...</p>
         </div>
       )}
